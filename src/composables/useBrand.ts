@@ -6,8 +6,6 @@ import { useRoute } from 'vue-router' // 這裡引入是為了類型提示和在
 import { ALL_BRANDS, MAIN_BRAND_NAME } from '@/constants/brands/brands.ts'
 import type { Brand } from '@/constants/brands/brands.ts'
 
-console.log(MAIN_BRAND_NAME)
-
 const _currentBrand = ref<Brand>('unknown') // 使用內部變數來存儲品牌狀態
 
 export function useBrand() {

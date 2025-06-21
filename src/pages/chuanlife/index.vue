@@ -10,9 +10,26 @@ function scrollTo(where: string) {
     }
 }
 
+const partners = [
+    {
+        name: 'Crazy Clown',
+        url: 'https://chuan.life/crazyclown',
+        logo: '/src/assets/media/partners/crazyclown/logo.png',
+    },
+    {
+        name: '源品香企業行',
+        url: 'https://yuanpinxiang.com',
+        logo: '/src/assets/media/partners/yuanpinxiang/logo.png',
+    },
+] as Partner[]
+
+
+console.log(partners);
+
 </script>
 
 <template>
+
     <section id="home-hero">
         <div class="bg-white dark:bg-sky-950 grid h-screen place-content-center">
             <div class="mx-auto w-screen max-w-screen-xl px-5 md:grid md:grid-cols-2 md:items-center md:gap-5">
@@ -43,6 +60,32 @@ function scrollTo(where: string) {
                 </div>
 
             </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container mx-auto p-8">
+
+            <section class="my-16">
+                <h2 class="text-3xl font-semibold text-center mb-10 text-gray-800">我們的合作夥伴</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    <a v-for="partner in partners" :key="partner.name" :href="partner.url" target="_blank"
+                        rel="noopener noreferrer"
+                        class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:scale-105">
+                        <img :src="partner.logo" :alt="`${partner.name} Logo`"
+                            class="h-40 w-auto mb-4 object-contain rounded-xl" />
+                        <p class="text-lg font-medium text-gray-700 text-center">{{ partner.name }}</p>
+                    </a>
+                </div>
+
+                <div v-if="partners === 0" class="text-center text-gray-500 mt-8">
+                    目前沒有合作夥伴資訊。
+                </div>
+            </section>
+
+            <p class="text-center text-gray-600 mt-16">
+                探索我們的服務，讓生活更美好。
+            </p>
         </div>
     </section>
 
