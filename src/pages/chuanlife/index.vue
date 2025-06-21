@@ -14,12 +14,12 @@ const partners = [
     {
         name: 'Crazy Clown',
         url: 'https://chuan.life/crazyclown',
-        logo: '/src/assets/media/partners/crazyclown/logo.png',
+        logo: '/public/assets/media/partners/crazyclown/logo.png',
     },
     {
         name: '源品香企業行',
         url: 'https://yuanpinxiang.com',
-        logo: '/src/assets/media/partners/yuanpinxiang/logo.png',
+        logo: '/public/assets/media/partners/yuanpinxiang/logo.png',
     },
 ] as Partner[]
 
