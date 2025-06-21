@@ -13,10 +13,10 @@ type LayoutComponentLoader = () => Promise<{ default: ReturnType<typeof defineCo
 // 佈局組件的動態導入映射表
 // 這裡的結構是：{ '品牌名稱': { '佈局類型': () => import(...) } }
 const layoutLoaders: Record<Brand | 'default', Record<LayoutType, LayoutComponentLoader>> = {
-  xiangchuan: {
-    public: () => import('@/layouts/xiangchuan/Public.vue'),
-    admin: () => import('@/layouts/xiangchuan/Admin.vue'),
-    user: () => import('@/layouts/xiangchuan/User.vue'),
+  chuanlife: {
+    public: () => import('@/layouts/chuanlife/Public.vue'),
+    admin: () => import('@/layouts/chuanlife/Admin.vue'),
+    user: () => import('@/layouts/chuanlife/User.vue'),
   },
   crazyclown: {
     public: () => import('@/layouts/crazyclown/Public.vue'),

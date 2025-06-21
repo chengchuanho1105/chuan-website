@@ -1,11 +1,10 @@
 <script setup lang="ts">
-defineOptions({ name: 'XiangChuan-Layout-Admin' });
-
+defineOptions({ name: 'ChuanLife-errors-500' });
 </script>
 
 <template>
     <div class="">
-        <slot></slot>
+
     </div>
 </template>
 

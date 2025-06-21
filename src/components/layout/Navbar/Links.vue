@@ -10,7 +10,7 @@ const props = defineProps<{
   items: NavbarItem[];
 }>();
 
-// ⭐ NEW: 在這裡對頂層項目進行過濾和排序
+// 在這裡對頂層項目進行過濾和排序
 const filteredAndSortedItems = computed(() => {
   return props.items
     .filter(item => item.displayInNavbar !== false) // 過濾掉不顯示的項目

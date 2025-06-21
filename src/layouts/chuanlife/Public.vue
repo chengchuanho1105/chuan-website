@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineOptions({ name: 'XiangChuan-Layout-Public' });
+defineOptions({ name: 'ChuanLife-Layout-Public' });
 import Navbar from '@/components/layout/Navbar/Navbar.vue'
 </script>
 
@@ -7,9 +7,9 @@ import Navbar from '@/components/layout/Navbar/Navbar.vue'
     <header>
         <Navbar />
     </header>
-    <div class="">
+    <main class="min-h-screen bg-sky-50 dark:bg-sky-950">
         <slot></slot>
-    </div>
+    </main>
 </template>
 
 <style scoped></style>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineOptions({ name: 'XiangChuan-Product-Certification' });
+defineOptions({ name: 'ChuanLife-Product' });
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineOptions({ name: 'XiangChuan-User-Profile' });
+defineOptions({ name: 'ChuanLife-Product-List' });
 </script>
 
 <template>

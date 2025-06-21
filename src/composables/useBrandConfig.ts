@@ -19,10 +19,10 @@ export interface DetailedBrandConfig {
 // 提供一個預設的未知品牌配置
 const DEFAULT_UNKNOWN_CONFIG: DetailedBrandConfig = {
   brand: 'unknown',
-  fullName: '未知服務工作室',
-  fullNameEn: 'Unknown Service Studio',
-  shortName: '未知服務',
-  shortNameEn: 'Unknown Service',
+  fullName: '未知的品牌',
+  fullNameEn: 'Unknown Brand',
+  shortName: '未知品牌',
+  shortNameEn: 'unknown brand',
   logoPath: '/logos/default-logo.svg',
   companyAddress: '',
   contactEmail: '',
@@ -41,7 +41,7 @@ export function useBrandConfig(brand: Brand) {
         config.value = DEFAULT_UNKNOWN_CONFIG
         return
       }
-      // ⭐ NEW: 動態導入路徑
+      // 動態導入路徑
       const module = await import(`../constants/brands/brandConfigs/${brand}.ts`)
       // 根據您的導出方式調整這裡
       // 如果是 export const yourBrandConfig = { ... }

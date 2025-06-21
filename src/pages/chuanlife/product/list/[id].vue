@@ -1,11 +1,10 @@
 <script setup lang="ts">
-defineOptions({ name: 'XiangChuan-Layout-User' });
-
+defineOptions({ name: 'ChuanLife-Product-List-Id' });
 </script>
 
 <template>
     <div class="">
-        <slot></slot>
+
     </div>
 </template>
 

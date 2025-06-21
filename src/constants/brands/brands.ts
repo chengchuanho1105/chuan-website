@@ -22,7 +22,7 @@
  *    - `/layouts/brands/**`（品牌專屬版型）
  */
 export const ALL_BRANDS = [
-  'xiangchuan',
+  'chuanlife',
   'crazyclown',
   // 'anotherBrand', // ← 新品牌請新增於此處
   'unknown',
@@ -40,4 +40,4 @@ export type Brand = (typeof ALL_BRANDS)[number]
  *
  * 若要切換主要品牌，請僅修改此常數，不建議於其他模組硬編寫品牌名稱。
  */
-export const MAIN_BRAND_NAME: Brand = 'xiangchuan'
+export const MAIN_BRAND_NAME: Brand = 'chuanlife'

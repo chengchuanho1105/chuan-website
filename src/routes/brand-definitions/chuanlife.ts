@@ -1,7 +1,7 @@
 //
 /**
- * @file /src/routes/brand-definitions/xiangchuan.ts
- * @module router/brand-definitions/xiangchuan
+ * @file /src/routes/brand-definitions/chuanlife.ts
+ * @module router/brand-definitions/chuanlife
  * @description
  * 定義品牌的頂層主品牌路徑與靜態手動路由（補充 vite-plugin-pages 結果）。
  *
@@ -19,11 +19,11 @@ import type { RouteRecordRaw } from 'vue-router'
 // 導入基礎 NavbarItem 類型
 import type { NavbarItem } from '@/types/navbar'
 
-const brandName = 'crazyclown'
+const brandName = 'chuanlife'
 
 // 定義所有頁面的通用配置
 // 這將是所有路由和導覽列資訊的單一來源
-const xiangchuanPageConfigs: NavbarItem[] = [
+const chuanlifePageConfigs: NavbarItem[] = [
   {
     text: '首頁',
     path: '/',
@@ -85,10 +85,10 @@ const xiangchuanPageConfigs: NavbarItem[] = [
 /* ---------------------------------------
  * 頂層路徑定義（主品牌模式時的對應路徑）
  - 這些將被轉換為 RegExp 用於主品牌判斷（如 getBrandFromPath）
- * 從 xiangchuanPageConfigs 中提取
+ * 從 chuanlifePageConfigs 中提取
  * --------------------------------------- */
 
-export const topLevelPathsAsMainBrand = xiangchuanPageConfigs
+export const topLevelPathsAsMainBrand = chuanlifePageConfigs
   .map((item) => item.path)
   .flat(Infinity) // 攤平所有巢狀路徑，如果子項目有獨立的頂層路徑需求
   .filter((path, index, self) => self.indexOf(path) === index)
@@ -96,17 +96,17 @@ export const topLevelPathsAsMainBrand = xiangchuanPageConfigs
 
 /* ---------------------------------------
  * 導覽列資料定義
- * 直接匯出 xiangchuanPageConfigs 作為導覽列資料，不包含 componentLoader 和 layout 屬性
- * 導覽列資料將是 xiangchuanPageConfigs 的子集，不包含路由配置相關的屬性
+ * 直接匯出 chuanlifePageConfigs 作為導覽列資料，不包含 componentLoader 和 layout 屬性
+ * 導覽列資料將是 chuanlifePageConfigs 的子集，不包含路由配置相關的屬性
  * --------------------------------------- */
-export const navbarConfig: NavbarItem[] = xiangchuanPageConfigs.map(
+export const navbarConfig: NavbarItem[] = chuanlifePageConfigs.map(
   ({ componentLoader, layout, ...rest }) => ({ ...rest }),
 )
 //
 
 /* ---------------------------------------
  * 路由定義（品牌的實際路由）
- * 從 xiangchuanPageConfigs 中動態生成
+ * 從 chuanlifePageConfigs 中動態生成
  * --------------------------------------- */
 // 輔助函式：遞迴生成路由
 function generateRoutes(configs: NavbarItem[]): RouteRecordRaw[] {
@@ -118,7 +118,7 @@ function generateRoutes(configs: NavbarItem[]): RouteRecordRaw[] {
         name: config.name,
         component: config.componentLoader,
         meta: {
-          brand: brandName, // 品牌固定為 'xiangchuan'
+          brand: brandName, // 品牌固定為 'chuanlife'
           layout: config.layout || 'public', // 如果沒有定義佈局，預設為 public
         },
       }
@@ -148,6 +148,6 @@ function generateRoutes(configs: NavbarItem[]): RouteRecordRaw[] {
   })
   return routes
 }
-export const xiangchuanRoutes: RouteRecordRaw[] = generateRoutes(xiangchuanPageConfigs)
+export const chuanlifeRoutes: RouteRecordRaw[] = generateRoutes(chuanlifePageConfigs)
 
-export default xiangchuanRoutes
+export default chuanlifeRoutes

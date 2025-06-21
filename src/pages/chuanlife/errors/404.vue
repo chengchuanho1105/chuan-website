@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineOptions({ name: 'XiangChuan-Product-List' });
+defineOptions({ name: 'ChuanLife-errors-404' });
 </script>
 
 <template>

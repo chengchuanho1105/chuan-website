@@ -11,6 +11,7 @@ function scrollTo(where: string) {
         target.scrollIntoView({ behavior: 'smooth' })
     }
 }
+
 </script>
 
 <template>

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-defineOptions({ name: 'XiangChuan-errors-404' });
+defineOptions({ name: 'ChuanLife-FAQ' });
 </script>
 
 <template>
     <div class="">
-
+        FAQ
     </div>
 </template>
 

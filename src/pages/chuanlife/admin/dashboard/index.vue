@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineOptions({ name: 'XiangChuan-errors-403' });
+defineOptions({ name: 'ChuanLife-Admin-Dashboard' });
 </script>
 
 <template>

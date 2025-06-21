@@ -1,10 +1,10 @@
 <script setup lang="ts">
-defineOptions({ name: 'XiangChuan-Contact' });
+defineOptions({ name: 'ChuanLife-User-Profile' });
 </script>
 
 <template>
     <div class="">
-        Contact
+
     </div>
 </template>
 

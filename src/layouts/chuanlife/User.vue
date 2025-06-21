@@ -1,10 +1,11 @@
 <script setup lang="ts">
-defineOptions({ name: 'XiangChuan-errors-500' });
+defineOptions({ name: 'ChuanLife-Layout-User' });
+
 </script>
 
 <template>
     <div class="">
-
+        <slot></slot>
     </div>
 </template>
 

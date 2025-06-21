@@ -1,10 +1,10 @@
 <script setup lang="ts">
-defineOptions({ name: 'XiangChuan-FAQ' });
+defineOptions({ name: 'ChuanLife-Product-Certification' });
 </script>
 
 <template>
     <div class="">
-        FAQ
+
     </div>
 </template>
 
