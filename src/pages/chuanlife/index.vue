@@ -29,9 +29,6 @@ const partners = [
     },
 ] as Partner[]
 
-
-console.log(partners);
-
 </script>
 
 <template>

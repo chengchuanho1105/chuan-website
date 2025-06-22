@@ -1,29 +1,32 @@
-//
 /**
- * @file /src/routes/brand-definitions/crazyclown.ts
- * @module router/brand-definitions/crazyclown
+ * @file src/routes/brand-definitions/[brand].ts
+ * @module router/brand-definitions/[brand]
  * @description
- * 定義品牌的頂層主品牌路徑與靜態手動路由（補充 vite-plugin-pages 結果）。
+ * 定義品牌的頁面配置與導覽列項目，並透過 `createBrandDefinitions` 封裝為標準格式供路由系統使用。
  *
- * 這個模組會被動態載入並參與頂層路徑比對，用於：
- * - 自動品牌判斷（router/helpers.ts 中）
- * - 生成正規表達式（routes/index.ts 中）
- *
- * 注意：這些手動定義的路由大多數情況會由 vite-plugin-pages 自動產生。
- * 本模組主要提供頂層路徑邏輯參考，僅在特殊情況下需要手動定義完整路由。
+ * - 每筆頁面設定同時對應一個 route 與一個導覽列項目（NavbarItem）
+ * - 每個項目包含頁面元件、路徑、導覽列顯示選項、排序等
+ * - 可支援 children（巢狀子頁面）
  */
 //
 
-import type { RouteRecordRaw } from 'vue-router'
-
-// 導入基礎 NavbarItem 類型
+import type { Brand } from '@/constants/brands/brands.ts'
 import type { NavbarItem } from '@/types/navbar'
+import { createBrandDefinitions } from '../../untils/createBrandDefinitions'
 
-const brandName = 'crazyclown'
+/**
+ * 品牌名稱：會作為 route name、component path 等的命名基礎
+ */
+const brandName: Brand = 'crazyclown'
 
-// 定義所有頁面的通用配置
-// 這將是所有路由和導覽列資訊的單一來源
-const crazyclownPageConfigs: NavbarItem[] = [
+/**
+ * 頁面與導覽列設定清單
+ *
+ * 每個項目會被轉換為：
+ * - RouteRecordRaw（用於 vue-router）
+ * - 導覽列項目（由 layout 或 navbar 元件使用）
+ */
+const pageConfigs: NavbarItem[] = [
   {
     text: '首頁',
     path: '/',
@@ -62,72 +65,11 @@ const crazyclownPageConfigs: NavbarItem[] = [
   },
 ]
 
-/* ---------------------------------------
- * 頂層路徑定義（主品牌模式時的對應路徑）
- - 這些將被轉換為 RegExp 用於主品牌判斷（如 getBrandFromPath）
- * 從 crazyclownPageConfigs 中提取
- * --------------------------------------- */
-
-export const topLevelPathsAsMainBrand = crazyclownPageConfigs
-  .map((item) => item.path)
-  .flat(Infinity) // 攤平所有巢狀路徑，如果子項目有獨立的頂層路徑需求
-  .filter((path, index, self) => self.indexOf(path) === index)
-//
-
-/* ---------------------------------------
- * 導覽列資料定義
- * 直接匯出 crazyclownPageConfigs 作為導覽列資料，不包含 componentLoader 和 layout 屬性
- * 導覽列資料將是 crazyclownPageConfigs 的子集，不包含路由配置相關的屬性
- * --------------------------------------- */
-export const navbarConfig: NavbarItem[] = crazyclownPageConfigs.map(
-  ({ componentLoader, layout, ...rest }) => ({ ...rest }),
-)
-//
-
-/* ---------------------------------------
- * 路由定義（品牌的實際路由）
- * 從 crazyclownPageConfigs 中動態生成
- * --------------------------------------- */
-// 輔助函式：遞迴生成路由
-function generateRoutes(configs: NavbarItem[]): RouteRecordRaw[] {
-  const routes: RouteRecordRaw[] = []
-  configs.forEach((config) => {
-    if (config.componentLoader && config.path && config.name) {
-      const route: RouteRecordRaw = {
-        path: config.path,
-        name: config.name,
-        component: config.componentLoader,
-        meta: {
-          brand: brandName, // 品牌固定為 'crazyclown'
-          layout: config.layout || 'public', // 如果沒有定義佈局，預設為 public
-        },
-      }
-
-      // 檢查並處理動態參數，使其與 vite-plugin-pages 的行為更一致，
-      // 如果路由是如 `/product/:id` 這樣的，Vue Router 會自動處理。
-      // 這裡主要確保路由結構正確。
-
-      if (config.children && config.children.length > 0) {
-        // 如果子路由的路徑是相對的，Vue Router 會自動處理
-        const childrenRoutes = generateRoutes(config.children)
-        if (childrenRoutes.length > 0) {
-          ;(route as unknown as RouteRecordRaw & { children: RouteRecordRaw[] }).children =
-            childrenRoutes // 遞迴處理子路由
-        }
-      }
-      routes.push(route)
-    } else if (config.children && config.children.length > 0) {
-      // 如果父節點本身沒有 componentLoader 但有子路由（例如只是個菜單分類），
-      // 可以創建一個沒有 component 的父路由，或者直接將子路由拉平。
-      // 在此範例中，我們會嘗試將子路由附加到父路由的 children 中。
-      // 如果父路由沒有 component 且 path 為空，可以考慮作為一個抽象路由。
-      // 但為了簡化，這裡假設所有有子路由的父級都有自己的 component。
-      // 如果您的父路由純粹只是個導覽群組，沒有實際頁面，則可以調整。
-      // 例如： routes.push(...generateRoutes(config.children));
-    }
-  })
-  return routes
-}
-export const crazyclownRoutes: RouteRecordRaw[] = generateRoutes(crazyclownPageConfigs)
-
-export default crazyclownRoutes
+/**
+ * 將品牌名稱與頁面設定轉換為標準格式的品牌定義模組
+ * 包含：
+ * - topLevelPathsAsMainBrand：主品牌的頂層路徑
+ * - brandRoutes：對應的 route 清單
+ * - brandName：品牌名稱
+ */
+export default createBrandDefinitions(brandName, pageConfigs)
