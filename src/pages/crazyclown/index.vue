@@ -61,10 +61,12 @@ onMounted(() => {
                             最新活動
                         </a>
 
+                        <!--
                         <a class="inline-block rounded border border-indigo-200 px-5 py-3 font-medium text-indigo-700 dark:text-indigo-300 shadow-sm transition-colors hover:bg-indigo-50 hover:text-indigo-900"
                             @click.prevent="scrollTo('#home-about')" href="">
                             了解更多
                         </a>
+                        -->
                     </div>
                 </div>
 
