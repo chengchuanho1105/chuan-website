@@ -117,6 +117,7 @@ function scrollTo(where: string) {
 
         <SectionDefStyle id="home-event" mainTitle="最新活動" subTitle="event" slogan="" data-aos="fade-up">
             <div class="p-5">
+                <iframe src=" https://kraftontw.info/SummerCampEvent" frameborder="0" class="w-full h-[50svh]"></iframe>
             </div>
         </SectionDefStyle>
 

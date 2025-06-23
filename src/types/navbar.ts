@@ -3,6 +3,7 @@ export interface NavbarItem {
   text: string
   path: string
   name?: string
+  title: string
   icon?: string
   requiresAuth?: boolean
   children?: NavbarItem[]

@@ -20,9 +20,12 @@
   "dependencies": {
     "@heroicons/vue": "^2.2.0",
     "@types/swiper": "^5.4.3",
+    "@unhead/dom": "^2.0.10",
+    "@unhead/vue": "^2.0.10",
     "@vueuse/core": "^13.3.0",
     "aos": "^2.3.4",
     "bootstrap-icons": "^1.13.1",
+    "lodash.merge": "^4.6.2",
     "pinia": "^3.0.1",
     "swiper": "^11.2.8",
     "unhead": "^2.0.10",

@@ -18,6 +18,7 @@ import { createBrandDefinitions } from '../../untils/createBrandDefinitions'
  * 品牌名稱：會作為 route name、component path 等的命名基礎
  */
 const brandName: Brand = 'chuanlife'
+const titleName = '銓生活'
 
 /**
  * 頁面與導覽列設定清單
@@ -31,6 +32,7 @@ const pageConfigs: NavbarItem[] = [
     text: '首頁',
     path: '/',
     name: `${brandName}-Home`,
+    title: `首頁 | ${titleName}`,
     componentLoader: () => import(`@/pages/${brandName}/index.vue`),
     layout: 'public',
     displayInNavbar: true,
@@ -40,6 +42,7 @@ const pageConfigs: NavbarItem[] = [
     text: '關於我們',
     path: '/about',
     name: `${brandName}-About`,
+    title: `關於我們 | ${titleName}`,
     componentLoader: () => import(`@/pages/${brandName}/about.vue`),
     layout: 'public',
     displayInNavbar: true,
@@ -49,6 +52,7 @@ const pageConfigs: NavbarItem[] = [
     text: '產品介紹',
     path: '/product',
     name: `${brandName}-Product`,
+    title: `產品介紹 | ${titleName}`,
     componentLoader: () => import(`@/pages/${brandName}/product/index.vue`),
     layout: 'public',
     displayInNavbar: true,
@@ -58,6 +62,7 @@ const pageConfigs: NavbarItem[] = [
         text: '所有產品',
         path: '/product/list',
         name: `${brandName}-Product-List`,
+        title: `所有產品 | ${titleName}`,
         componentLoader: () => import(`@/pages/${brandName}/product/list/index.vue`),
         layout: 'public',
         displayInNavbar: true,
@@ -69,6 +74,7 @@ const pageConfigs: NavbarItem[] = [
     text: '常見問題',
     path: '/faq',
     name: `${brandName}-FAQ`,
+    title: `常見問題 | ${titleName}`,
     componentLoader: () => import(`@/pages/${brandName}/faq.vue`),
     layout: 'public',
     displayInNavbar: true,
@@ -78,6 +84,7 @@ const pageConfigs: NavbarItem[] = [
     text: '聯絡我們',
     path: '/contact',
     name: `${brandName}-Contact`,
+    title: `聯絡我們 | ${titleName}`,
     componentLoader: () => import(`@/pages/${brandName}/contact.vue`),
     layout: 'public',
     displayInNavbar: true,

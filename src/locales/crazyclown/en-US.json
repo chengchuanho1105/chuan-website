@@ -1,0 +1,19 @@
+{
+  "crazyclown": {
+    "brand_name": "Crazy Clown",
+    "slogan": "Crazy Clown slogan",
+    "page": {
+      "home": "Home",
+      "about": "About",
+      "products": "Products"
+    },
+    "title": {
+      "home_page": "Home | Crazy Clown",
+      "about_page": "About | Crazy Clown",
+      "products_page": "Products | Crazy Clown"
+    },
+    "meta": {
+      "about_description": "Clown Clown description。"
+    }
+  }
+}

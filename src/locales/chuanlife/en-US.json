@@ -1,0 +1,19 @@
+{
+  "crazyclown": {
+    "brand_name": "Chuan Life",
+    "slogan": "Chuan Life slogan",
+    "page": {
+      "home": "Home",
+      "about": "About",
+      "products": "Products"
+    },
+    "title": {
+      "home_page": "Home | Chuan Life",
+      "about_page": "About | Chuan Life",
+      "products_page": "Products | Chuan Life"
+    },
+    "meta": {
+      "about_description": "Clown Clown description。"
+    }
+  }
+}
