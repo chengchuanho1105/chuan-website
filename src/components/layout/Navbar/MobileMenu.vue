@@ -96,17 +96,7 @@ const handleUserAction = (actionId: string) => {
         leave-active-class="transition ease-in duration-200 transform" leave-from-class="opacity-100 translate-x-0"
         leave-to-class="opacity-0 -translate-x-full">
         <div v-if="isOpen" class="fixed inset-0 z-40 bg-white dark:bg-zinc-900 lg:hidden overflow-y-auto shadow-xl">
-            <div class="p-4">
-                <div class="flex justify-end mb-4">
-                    <button @click="emit('close')"
-                        class="p-2 rounded-md text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-
+            <div class="mt-15 p-4">
                 <nav>
                     <ul class="space-y-2">
                         <MobileMenuItem v-for="item in filteredAndSortedItems" :key="item.path" :item="item"
