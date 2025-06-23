@@ -45,6 +45,9 @@ const handleUserAction = (actionId: string) => {
   console.log('User onClick:', actionId);
   // 根據 actionId 執行不同的邏輯
   switch (actionId) {
+    case 'login':
+      // 處理登入邏輯
+      break;
     case 'manageAccount':
       // 處理管理帳戶邏輯
       break;
