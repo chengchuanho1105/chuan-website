@@ -131,12 +131,12 @@ onMounted(() => {
         -->
 
         <SectionDefStyle id="home-event" mainTitle="最新活動" subTitle="event" slogan="" data-aos="fade-up">
-            <div id="event-《絕地夏令營》" class="m-5 bg-white rounded-xl">
+            <div id="event-SummerCampEvent" class="m-5 bg-white rounded-xl">
                 <h2 class="pt-5 pb-3 text-3xl">《絕地夏令營》</h2>
                 <iframe src="https://kraftontw.info/SummerCampEvent" frameborder="0" class="w-full h-[50svh]"></iframe>
             </div>
             <hr class="mx-3 border-2 border-indigo-500">
-            <div id="event-《第 45 期擊殺挑戰》" class="m-5 bg-white rounded-xl">
+            <div id="event-KillChallenge45" class="m-5 bg-white rounded-xl">
                 <h2 class="pt-5 pb-3 text-3xl">《第 45 期擊殺挑戰》</h2>
                 <iframe src="https://kraftontw.info/KillChallenge45" frameborder="0" class="w-full h-[50svh]"></iframe>
             </div>
