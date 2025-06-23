@@ -42,6 +42,11 @@ function scrollTo(where: string) {
                             加入我們
                         </a>
 
+                        <a class="inline-block rounded border border-green-200 px-5 py-3 font-medium text-green-700 dark:text-green-300 shadow-sm transition-colors hover:bg-green-50 hover:text-green-900"
+                            @click.prevent="scrollTo('#home-event')" href="">
+                            最新活動
+                        </a>
+
                         <a class="inline-block rounded border border-indigo-200 px-5 py-3 font-medium text-indigo-700 dark:text-indigo-300 shadow-sm transition-colors hover:bg-indigo-50 hover:text-indigo-900"
                             @click.prevent="scrollTo('#home-about')" href="">
                             了解更多
@@ -104,16 +109,12 @@ function scrollTo(where: string) {
             </div>
         </SectionDefStyle>
 
+        <!--
         <SectionDefStyle id="home-about" mainTitle="關於我們" subTitle="about" slogan="" data-aos="fade-up">
             <div class="p-5">
-                <!--
-                    <iframe src="https://discord.com/widget?id=490129931808931840&theme=dark" width="350" height="500"
-                        allowtransparency="true" frameborder="0"
-                        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-                    </iframe>
-                -->
             </div>
         </SectionDefStyle>
+        -->
 
         <SectionDefStyle id="home-event" mainTitle="最新活動" subTitle="event" slogan="" data-aos="fade-up">
             <div class="p-5">
@@ -121,11 +122,13 @@ function scrollTo(where: string) {
             </div>
         </SectionDefStyle>
 
+        <!--
         <SectionDefStyle id="home-" mainTitle="最新戰績" subTitle="" slogan="" data-aos="fade-up">
             <div class="p-5">
 
             </div>
         </SectionDefStyle>
+        -->
 
     </div>
 </template>
