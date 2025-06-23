@@ -1,6 +1,8 @@
 <script setup lang="ts">
 defineOptions({ name: 'CrazyClown-HomePage' });
 
+import { onMounted } from 'vue'
+
 import SectionDefStyle from '@/components/uiCompo/SectionDefStyle.vue'
 import TimeLine from '@/components/uiCompo/TimrLine.vue'
 import heroImg1 from '@/assets/media/crazyclown/logo.png'
@@ -11,6 +13,18 @@ function scrollTo(where: string) {
         target.scrollIntoView({ behavior: 'smooth' })
     }
 }
+
+onMounted(() => {
+    const hash = window.location.hash
+    if (hash) {
+        setTimeout(() => {
+            const el = document.querySelector(hash)
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' })
+            }
+        }, 300)
+    }
+})
 
 </script>
 
