@@ -1,7 +1,9 @@
 <script setup lang="ts">
 defineOptions({ name: 'NavbarLinks' });
 
-import { computed } from 'vue';
+import { computed, provide } from 'vue';
+import { useBrandPath } from '@/composables/useBrandPath';
+
 import type { NavbarItem } from '@/types/navbar';
 import NavbarMenuItem from './NavbarMenuItem.vue'; // 導入 NavbarMenuItem
 
@@ -16,6 +18,10 @@ const filteredAndSortedItems = computed(() => {
     .filter(item => item.displayInNavbar !== false) // 過濾掉不顯示的項目
     .sort((a, b) => (a.order || 0) - (b.order || 0)); // 排序
 });
+
+// 將 getBrandPath 提供給子元件使用
+const { getBrandPath } = useBrandPath();
+provide('getBrandPath', getBrandPath);
 </script>
 
 <template>

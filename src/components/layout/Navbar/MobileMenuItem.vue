@@ -1,17 +1,17 @@
 <script setup lang="ts">
 defineOptions({ name: 'MobileMenuItem' });
 
-import { computed } from 'vue';
+import { computed, inject } from 'vue';
 import type { NavbarItem } from '@/types/navbar';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
+import type { GetBrandPath } from '@/types/navbar'; // 假設您有這個類型定義
 
-const props = defineProps<{
-    item: NavbarItem;
-    // 傳遞 getBrandPath 函數，以確保路由正確處理品牌前綴
-    getBrandPath: (path: string) => string;
-}>();
+const props = defineProps<{ item: NavbarItem }>();
 
 const emit = defineEmits(['close-menu']);
+
+// 從父元件注入 getBrandPath 函數
+const getBrandPath = inject<GetBrandPath>('getBrandPath')!;
 
 // 輔助函數：過濾和排序子項目，確保遞迴調用時子項目也符合條件
 const filteredChildren = computed(() => {
@@ -35,15 +35,16 @@ const handleItemClick = () => {
 <template>
     <li v-if="props.item.displayInNavbar !== false">
         <template v-if="hasVisibleChildren">
-            <Disclosure v-slot="{ open }">
+            <Disclosure v-slot="{ open }" as="div">
                 <DisclosureButton
-                    class="flex justify-between items-center w-full px-4 py-2 text-left text-base font-medium text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">
+                    class="flex items-center justify-between w-full px-4 py-2 text-base font-medium text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">
                     <span class="flex items-center space-x-2">
                         <span v-if="props.item.icon">{{ props.item.icon }}</span>
                         <span>{{ props.item.text }}</span>
                     </span>
                     <i class="bi bi-chevron-down transform transition-transform duration-200"
-                        :class="{ 'rotate-180': open }"></i>
+                        :class="{ 'rotate-180': open }">
+                    </i>
                 </DisclosureButton>
                 <transition enter-active-class="transition ease-out duration-100"
                     enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100"
