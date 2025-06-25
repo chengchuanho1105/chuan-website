@@ -1,6 +1,6 @@
 import '@/assets/style/public/main.css'
 
-import { startPageUpdatePolling } from '@/untils/pageUpdater.ts'
+import '@/untils/pageUpdater.ts'
 
 import AOS from 'aos'
 import 'aos/dist/aos.css'
@@ -22,5 +22,3 @@ app.use(createPinia())
 app.use(router)
 
 app.mount('#app')
-
-startPageUpdatePolling()
