@@ -51,7 +51,7 @@ async function needUpdate() {
   return false
 }
 
-const DURATION = 5000
+const DURATION = 2000
 
 function startAutoRefresh() {
   setInterval(async () => {
