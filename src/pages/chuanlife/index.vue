@@ -43,7 +43,7 @@ const partners = [
 
         <div class="max-w-prose text-left" data-aos="zoom-in">
           <h3 class="font-bold text-gray-800 dark:text-gray-400 sm:text-5xl">
-            <span class="text-4xl text-sky-800 dark:text-gray-100">服務用心・品質至上</span> <br>
+            <span class="text-4xl text-sky-800 dark:text-gray-100">Happy~ 服務用心・品質至上</span> <br>
             <span class="text-5xl text-sky-800 dark:text-gray-100">銓生活服務！</span>
             <span class="text-5xl text-gray-800 dark:text-gray-300">與您同在</span>
           </h3>
