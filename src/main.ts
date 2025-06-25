@@ -1,24 +1,18 @@
-import '@/assets/style/public/main.css'
-
-import '@/untils/pageUpdater.ts'
-
-import AOS from 'aos'
-import 'aos/dist/aos.css'
-AOS.init({ duration: 800, once: false, offset: 50 })
-
+// src/main.ts
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import { createHead } from '@unhead/vue/client'
-
 import App from './App.vue'
-import router from '@/router/index.ts'
+import { setupPlugins } from './plugins'
+import { setupAOS } from './utils/aos'
+import './assets/style/public/main.css'
+
+import './utils/pageUpdater.ts'
 
 const app = createApp(App)
 
-const head = createHead()
-app.use(head)
+// 設定插件
+setupPlugins(app)
 
-app.use(createPinia())
-app.use(router)
+// 初始化 AOS
+setupAOS()
 
 app.mount('#app')

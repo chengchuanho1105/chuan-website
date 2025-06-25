@@ -6,7 +6,7 @@ import { ALL_BRANDS, MAIN_BRAND_NAME } from '@/constants/brands/brands'
 import generatedRoutes from '~pages'
 import publicErrorRoutes from './public-errors'
 import type { NavbarItem } from '@/types/navbar'
-import type { BrandDefinitions } from '../untils/createBrandDefinitions'
+import type { BrandDefinitions } from '../utils/createBrandDefinitions'
 
 /**
  * 匯入所有品牌定義模組

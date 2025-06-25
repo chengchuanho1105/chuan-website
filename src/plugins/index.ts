@@ -1,11 +1,12 @@
 // src/plugins/index.ts
 import type { App } from 'vue'
-import { installPinia } from './pinia'
-import { installRouter } from './router'
-import { installHead } from './head'
+import { createPinia } from 'pinia'
+import { createHead } from '@unhead/vue/client'
+import router from '@/router/index.ts'
 
-export function registerPlugins(app: App) {
-  installPinia(app)
-  installRouter(app)
-  installHead(app)
+export function setupPlugins(app: App) {
+  const head = createHead()
+  app.use(head)
+  app.use(createPinia())
+  app.use(router)
 }

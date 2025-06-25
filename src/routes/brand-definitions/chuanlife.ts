@@ -12,7 +12,7 @@
 
 import type { Brand } from '@/constants/brands/brands.ts'
 import type { NavbarItem } from '@/types/navbar'
-import { createBrandDefinitions } from '../../untils/createBrandDefinitions'
+import { createBrandDefinitions } from '../../utils/createBrandDefinitions'
 
 /**
  * 品牌名稱：會作為 route name、component path 等的命名基礎

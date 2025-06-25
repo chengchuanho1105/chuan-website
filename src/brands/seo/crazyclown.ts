@@ -1,33 +1,32 @@
-// src/seo/crazyclown.ts
-import type { HeadObj } from '@unhead/vue'
+// src/brands/seo/crazyclown.ts
 
-export const crazyclownSEO: HeadObj = {
-  title: 'CrazyClown - 瘋狂創意，無設限玩樂',
+export const seo = {
+  title: 'CrazyClown - 不瘋，不成團！',
   link: [
-    { rel: 'icon', href: '/favicon-crazyclown.ico', type: 'image/x-icon' },
-    { rel: 'apple-touch-icon', href: '/apple-touch-icon-crazyclown.png' },
+    { rel: 'icon', href: '/assets/media/crazyclown/logo.png', type: 'image/png' },
+    { rel: 'apple-touch-icon', href: '/assets/media/crazyclown/logo.png' },
   ],
   meta: [
     {
       name: 'description',
-      content: 'CrazyClown 帶來最瘋狂、最有創意的商品和娛樂體驗。打破常規，享受無設限的玩樂世界！',
+      content: '在這裡，每場遊戲都是一場瘋狂表演，這裡是 Crazy_Clown！期待你的加入！',
     },
-    { name: 'keywords', content: 'CrazyClown, 瘋狂, 創意, 玩樂, 搞怪, 特色商品' },
+    { name: 'keywords', content: 'CrazyClown, 瘋狂, 創意, 玩樂, 搞怪' },
     { name: 'author', content: 'CrazyClown' },
-    { property: 'og:title', content: 'CrazyClown - 瘋狂創意，無設限玩樂' },
+    { property: 'og:title', content: 'CrazyClown - 不瘋，不成團！' },
     {
       property: 'og:description',
-      content: 'CrazyClown 帶來最瘋狂、最有創意的商品和娛樂體驗。打破常規，享受無設限的玩樂世界！',
+      content: '在這裡，每場遊戲都是一場瘋狂表演，這裡是 Crazy_Clown！期待你的加入！',
     },
-    { property: 'og:image', content: 'https://yourwebsite.com/images/og-crazyclown.jpg' },
-    { property: 'og:url', content: 'https://crazyclown.com' },
+    { property: 'og:image', content: '/assets/media/crazyclown/ogimg.png' },
+    { property: 'og:url', content: 'https://chuan.life/crazyclown' },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'CrazyClown - 瘋狂創意，無設限玩樂' },
+    { name: 'twitter:title', content: 'CrazyClown - 不瘋，不成團！' },
     {
       name: 'twitter:description',
-      content: 'CrazyClown 帶來最瘋狂、最有創意的商品和娛樂體驗。打破常規，享受無設限的玩樂世界！',
+      content: '在這裡，每場遊戲都是一場瘋狂表演，這裡是 Crazy_Clown！期待你的加入！',
     },
-    { name: 'twitter:image', content: 'https://yourwebsite.com/images/twitter-crazyclown.jpg' },
+    { name: 'twitter:image', content: '/assets/media/crazyclown/ogimg.png' },
   ],
 }
