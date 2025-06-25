@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "npm run generate-sitemap && run-p type-check \"build-only {@}\" --",
     "deploy": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest",
@@ -15,7 +15,8 @@
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
     "lint:eslint": "eslint . --fix",
     "lint": "run-s lint:*",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "generate-sitemap": "node sitemap-generator.js"
   },
   "dependencies": {
     "@heroicons/vue": "^2.2.0",
@@ -27,6 +28,7 @@
     "bootstrap-icons": "^1.13.1",
     "lodash.merge": "^4.6.2",
     "pinia": "^3.0.1",
+    "sitemap": "^8.0.0",
     "swiper": "^11.2.8",
     "unhead": "^2.0.10",
     "vue": "^3.5.13",
