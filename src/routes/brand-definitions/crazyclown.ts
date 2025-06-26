@@ -27,7 +27,7 @@ const titleName = 'Crazy_Clown'
  * - RouteRecordRaw（用於 vue-router）
  * - 導覽列項目（由 layout 或 navbar 元件使用）
  */
-const pageConfigs: NavbarItem[] = [
+export const pageConfigs: NavbarItem[] = [
   {
     text: '首頁',
     path: '/',
