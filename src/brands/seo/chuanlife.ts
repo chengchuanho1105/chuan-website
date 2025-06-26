@@ -10,9 +10,48 @@ const seolist = {
   ogImg: 'https://chuan.life/assets/media/chuanlife/ogimg.png',
   description:
     '銓生活提供各式高品質生活用品，讓您的生活更有品味，享受輕鬆便利。探索家居、廚具、美妝等精選商品。',
-  keyword: '銓生活, 生活用品, 家居, 廚具, 美妝, 品味生活',
+  keywords: '銓生活, 生活用品, 家居, 廚具, 美妝, 品味生活',
   author: '銓生活',
   twitter: '@xiangquan10',
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: seolist.name,
+  legalName: seolist.name,
+  url: seolist.url,
+  logo: seolist.icon,
+  image: seolist.ogImg,
+  description: seolist.description,
+  founder: '何晟全',
+  foundingDate: '2025-01-01',
+  email: 'chengchuanho1105@gmail.com',
+  telephone: '+886-908-911-153',
+  sameAs: [
+    'https://www.facebook.com/cheng.1105.chuan',
+    'https://www.instagram.com/x._.1105._.q',
+    'https://www.youtube.com/@Chuan._.1105',
+    'https://x.com/@xiangquan10',
+    'https://line.me/ti/p/@xiangquan10',
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '雲林縣斗六市',
+    addressLocality: '雲林縣斗六市',
+    addressRegion: '台灣',
+    postalCode: '640',
+    addressCountry: 'TW',
+  },
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      telephone: '+886-908-911-153',
+      contactType: 'customer service',
+      areaServed: 'TW',
+      availableLanguage: ['zh-TW', 'en'],
+    },
+  ],
 }
 
 export const seo = {
@@ -28,7 +67,7 @@ export const seo = {
     { name: 'robots', content: 'index, follow' },
     { name: 'googlebot', content: 'index, follow' },
     { name: 'description', content: seolist.description },
-    { name: 'keyword', content: seolist.keyword },
+    { name: 'keywords', content: seolist.keywords },
     { name: 'author', content: seolist.author },
     { name: 'apple-mobile-web-app-capable', content: 'yes' },
     { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
@@ -56,4 +95,11 @@ export const seo = {
     { name: 'twitter:site', content: seolist.twitter },
     { name: 'twitter:creator', content: seolist.twitter },
   ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify(jsonLd),
+    },
+  ],
+  __dangerouslyDisableSanitizers: ['script'],
 }
