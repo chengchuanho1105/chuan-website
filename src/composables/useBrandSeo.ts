@@ -27,21 +27,21 @@ export function useBrandSeo() {
     let brandName = currentBrand.value
 
     if (brandName === 'unknown') {
-      brandName = 'unknown' // 假設你有一個 default.ts 的 SEO 配置
+      brandName = 'unknown' // 假設你有一個 unknown.ts 的 SEO 配置
     }
 
     try {
       // 動態導入 SEO 配置
-      const module = await import(`@/brands/seo/${brandName}.ts`) // 注意路徑：假設別名設置正確
-      seoConfig.value = module.seo // 更新響應式的 SEO 配置
+      const module = await import(`@/brands/seo/${brandName}.ts`)
+      seoConfig.value = module.seo
     } catch (error) {
       console.warn(
         `Failed to load SEO for brand "${brandName}", falling back to default SEO.`,
         error,
       )
-      // 如果特定品牌的 SEO 檔案不存在或載入失敗，嘗試載入 default 的 SEO
+      // 如果特定品牌的 SEO 檔案不存在或載入失敗，嘗試載入 unknown 的 SEO
       try {
-        const defaultModule = await import('@/brands/seo/unknown.ts') // 嘗試載入 default SEO
+        const defaultModule = await import('@/brands/seo/unknown.ts') // 嘗試載入 unknown SEO
         // Normalize meta to only include objects with 'name' and 'content'
         const normalizedMeta = Array.isArray(defaultModule.seo.meta)
           ? defaultModule.seo.meta

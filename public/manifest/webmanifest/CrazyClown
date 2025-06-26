@@ -1,0 +1,15 @@
+{
+  "name": "PUBG: Crazy_Clown",
+  "short_name": "Crazy_Clown",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "https://chuan.life/assets/media/crazyclown/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
