@@ -1,5 +1,5 @@
 // src/composables/useBrandSeo.ts
-import { watchEffect, ref } from 'vue' // 引入 ref
+import { watchEffect, ref } from 'vue'
 import { useHead } from '@unhead/vue'
 import { useBrand } from '@/composables/useBrand.ts'
 

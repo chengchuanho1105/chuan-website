@@ -1,8 +1,8 @@
 // src/constants/brands/brandConfigs/unknown.ts
 
-import type { Brand } from '../brands.ts' // 確保路徑正確
+import type { Brand, DetailedBrandConfig } from '../brands.ts' // 確保路徑正確
 
-export const unknownConfig = {
+export const unknownConfig: DetailedBrandConfig = {
   brand: 'unknown' as Brand,
   fullName: '未知的品牌',
   fullNameEn: 'Unknown Brand',

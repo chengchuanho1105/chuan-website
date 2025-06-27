@@ -21,7 +21,7 @@ const allManualBrandRoutes: RouteRecordRaw[] = []
 
 // 遍歷所有品牌模組並組裝各品牌相關資料
 for (const path in brandModules) {
-  // ⭐ NEW: 直接將 module.default 視為 BrandDefinitions 類型
+  // 直接將 module.default 視為 BrandDefinitions 類型
   const moduleExports = (brandModules[path] as { default: BrandDefinitions | undefined }).default // 預期 default export
 
   // 從檔案路徑中提取品牌名稱 (e.g. './brand-definitions/brandA.ts' -> 'brandA')

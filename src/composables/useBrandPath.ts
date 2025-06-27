@@ -1,8 +1,7 @@
 // src/composables/useBrandPath.ts
-import { computed } from 'vue'
-import { useBrand } from './useBrand' // 假設您已經有 useBrand composable
-import { MAIN_BRAND_NAME } from '@/constants/brands/brands' // 假設 MAIN_BRAND_NAME 的路徑
-import type { GetBrandPath } from '@/types/navbar' // 導入新增的類型
+import { useBrand } from './useBrand'
+import { MAIN_BRAND_NAME } from '@/constants/brands/brands'
+import type { GetBrandPath } from '@/types/navbar'
 
 export function useBrandPath() {
   const { currentBrand } = useBrand()

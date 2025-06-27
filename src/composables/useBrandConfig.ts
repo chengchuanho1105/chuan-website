@@ -1,35 +1,15 @@
 // src/composables/useBrandConfig.ts
 
 import { ref, watchEffect } from 'vue'
-import type { Brand } from '@/constants/brands/brands' // 確保路徑正確
+import type { Ref } from 'vue'
+import type { Brand, DetailedBrandConfig } from '@/constants/brands/brands'
 
-// 定義您的品牌配置類型，這樣就有強類型檢查
-export interface DetailedBrandConfig {
-  brand: Brand
-  fullName: string
-  fullNameEn: string
-  shortName: string
-  shortNameEn: string
-  logoPath: string
-  companyAddress: string
-  contactEmail: string
-  // ... 其他公司相關資料
-}
-
-// 提供一個預設的未知品牌配置
-const DEFAULT_UNKNOWN_CONFIG: DetailedBrandConfig = {
-  brand: 'unknown',
-  fullName: '未知的品牌',
-  fullNameEn: 'Unknown Brand',
-  shortName: '未知品牌',
-  shortNameEn: 'unknown brand',
-  logoPath: '/logos/default-logo.svg',
-  companyAddress: '',
-  contactEmail: '',
-}
-
-export function useBrandConfig(brand: Brand) {
-  const config = ref<DetailedBrandConfig>(DEFAULT_UNKNOWN_CONFIG)
+export function useBrandConfig(brand: Brand): {
+  config: Ref<DetailedBrandConfig>
+  isLoading: Ref<boolean>
+  error: Ref<unknown>
+} {
+  const config = ref<DetailedBrandConfig>(undefined as unknown as DetailedBrandConfig)
   const isLoading = ref(true)
   const error = ref<unknown>(null)
 
@@ -37,23 +17,28 @@ export function useBrandConfig(brand: Brand) {
     isLoading.value = true
     error.value = null
     try {
-      if (brand === 'unknown') {
-        config.value = DEFAULT_UNKNOWN_CONFIG
-        return
-      }
-      // 動態導入路徑
-      const module = await import(`../constants/brands/brandConfigs/${brand}.ts`)
-      // 根據您的導出方式調整這裡
-      // 如果是 export const yourBrandConfig = { ... }
-      config.value = module[`${brand}Config`] as DetailedBrandConfig
-      if (!config.value) {
+      // 動態導入品牌設定檔
+      const module = await import(`@/constants/brands/brandConfigs/${brand}.ts`)
+
+      // 統一使用 `${brand}Config` 命名規則
+      const brandConfig = module[`${brand}Config`] as DetailedBrandConfig | undefined
+
+      if (!brandConfig) {
         throw new Error(`Config for brand '${brand}' not found in its module.`)
       }
+
+      config.value = brandConfig
     } catch (e) {
       error.value = e
       console.error(`Failed to load config for brand '${brand}':`, e)
-      // Fallback to unknown config if loading fails
-      config.value = DEFAULT_UNKNOWN_CONFIG
+
+      // 載入 fallback：unknownConfig
+      try {
+        const fallback = await import('@/constants/brands/brandConfigs/unknown.ts')
+        config.value = fallback.unknownConfig
+      } catch (fallbackError) {
+        console.error('Failed to load unknownConfig as fallback:', fallbackError)
+      }
     } finally {
       isLoading.value = false
     }

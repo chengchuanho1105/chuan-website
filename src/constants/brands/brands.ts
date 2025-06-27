@@ -11,6 +11,13 @@
 //
 
 /**
+ * 系統主品牌名稱。
+ *
+ * 若要切換主要品牌，請僅修改此常數，不建議於其他模組硬編寫品牌名稱。
+ */
+export const MAIN_BRAND_NAME: Brand = 'chuanlife'
+
+/**
  * 所有支援的品牌名稱清單。
  *
  * - `'unknown'`：預設值，用於處理未辨識或未設定品牌時的 fallback。
@@ -35,9 +42,13 @@ export const ALL_BRANDS = [
  */
 export type Brand = (typeof ALL_BRANDS)[number]
 
-/**
- * 系統主品牌名稱。
- *
- * 若要切換主要品牌，請僅修改此常數，不建議於其他模組硬編寫品牌名稱。
- */
-export const MAIN_BRAND_NAME: Brand = 'chuanlife'
+export interface DetailedBrandConfig {
+  brand: Brand
+  fullName: string
+  fullNameEn: string
+  shortName: string
+  shortNameEn: string
+  logoPath: string
+  companyAddress: string
+  contactEmail: string
+}

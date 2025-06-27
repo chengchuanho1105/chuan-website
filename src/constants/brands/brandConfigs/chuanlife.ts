@@ -1,8 +1,8 @@
 // src/constants/brands/brandConfigs/chuanlife.ts
 
-import type { Brand } from '../brands.ts' // 確保路徑正確
+import type { Brand, DetailedBrandConfig } from '../brands.ts' // 確保路徑正確
 
-export const chuanlifeConfig = {
+export const chuanlifeConfig: DetailedBrandConfig = {
   brand: 'chuanlife' as Brand,
   fullName: '銓生活服務工作室',
   fullNameEn: 'Xiang Chuan Life Service Studio',

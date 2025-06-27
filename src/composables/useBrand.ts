@@ -21,7 +21,7 @@ export function useBrand() {
 
     // 檢查子品牌路徑
     for (const brand of ALL_BRANDS) {
-      if (brand === MAIN_BRAND_NAME) continue // 主品牌已在上面處理
+      if (brand === MAIN_BRAND_NAME) continue
       if (path.startsWith(`/${brand}`)) {
         return brand
       }
@@ -56,7 +56,7 @@ export function useBrand() {
         // _currentBrand.value = brand; // 這裡也可以更新內部狀態，但通常由路由守衛負責
         return brand
       } catch (e) {
-        // console.error('Error calling useRoute in getBrandFromCurrentRoute:', e)
+        console.error('Error calling useRoute in getBrandFromCurrentRoute:', e)
         return 'unknown'
       }
     },
