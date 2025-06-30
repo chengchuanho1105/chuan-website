@@ -2,6 +2,7 @@
 import { ref, watch } from 'vue'; // <--- 將 'watch' 加入這裡
 import { useLayoutLoader } from '@/composables/useLayoutLoader.ts'; // 引入新的佈局載入模組
 import { useBrandSeo } from '@/composables/useBrandSeo.ts'; // 引入新的 SEO 模組
+import { useTitle } from '@/composables/useTitle.ts'; // 引入新的標題處理模組
 
 // 初始化佈局載入器
 const { currentLayoutComponent, isLayoutLoading } = useLayoutLoader();
@@ -19,6 +20,8 @@ watch(isLayoutLoading, (newValue) => {
     isBrandResolved.value = true;
   }
 }, { immediate: true }); // 立即執行一次以處理初始狀態
+
+useTitle()
 
 </script>
 

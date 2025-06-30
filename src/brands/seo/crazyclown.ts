@@ -8,7 +8,7 @@ const seolist = {
   url: 'https://chuan.life',
   icon: 'https://chuan.life/assets/media/CrazyClown/logo.png',
   ogImg: 'https://chuan.life/assets/media/CrazyClown/ogimg.png',
-  description: '在這裡，每場遊戲都是一場瘋狂表演，這裡是 Crazy_Clown！期待你的加入！',
+  description: '在這裡，每場遊戲都是一場瘋狂表演！Crazy_Clown 期待你的加入！',
   keywords: 'Crazy_Clown, PUBG, 戰隊, 公會, clan, S級',
   author: '銓生活',
   twitter: '@xiangquan10',

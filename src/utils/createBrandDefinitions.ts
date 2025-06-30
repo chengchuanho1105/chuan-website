@@ -48,9 +48,11 @@ export function createBrandDefinitions(
   // --------------------------------------------------
   // 導覽列設定：去除與路由無關的欄位（componentLoader、layout）
   // --------------------------------------------------
-  const navbarConfig: NavbarItem[] = pageConfigs.map(({ componentLoader, layout, ...rest }) => ({
-    ...rest,
-  }))
+  const navbarConfig: NavbarItem[] = pageConfigs.map(
+    ({ componentLoader: _componentLoader, layout: _layout, ...rest }) => ({
+      ...rest,
+    }),
+  )
 
   // --------------------------------------------------
   // 路由定義：根據 pageConfigs 遞迴產生 RouteRecordRaw 陣列
