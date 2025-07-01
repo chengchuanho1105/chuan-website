@@ -68,6 +68,16 @@ export const pageConfigs: NavbarItem[] = [
     displayInNavbar: true,
     order: 5,
   },
+  {
+    text: '加入我們',
+    path: '/joinus',
+    name: `${brandName}-JoinUs`,
+    title: `加入我們 | ${titleName}`,
+    componentLoader: () => import(`@/pages/${brandName}/joinus.vue`),
+    layout: 'public',
+    displayInNavbar: true,
+    order: 5,
+  },
 ]
 
 /**
