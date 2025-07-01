@@ -52,7 +52,7 @@ onMounted(() => {
             <router-link
               class="inline-block rounded-lg border border-blue-200 px-5 py-3 font-medium text-blue-700 dark:text-blue-300 shadow-sm transition-colors hover:bg-blue-50 hover:text-blue-900"
               to="/crazyclown/joinus" title="加入我們" data-aos="fade-up">
-              加入我們
+              入隊申請
             </router-link>
 
             <a class="inline-block rounded-lg border border-green-200 px-5 py-3 font-medium text-green-700 dark:text-green-300 shadow-sm transition-colors hover:bg-green-50 hover:text-green-900"
