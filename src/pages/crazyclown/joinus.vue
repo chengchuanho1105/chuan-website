@@ -31,6 +31,17 @@ const updateValidationStatus = <T>(
   }
 };
 
+// 輔助函式：檢查 Discord 使用者名稱是否符合規範 (數字、字母、底線、英文句號)
+const isValidDiscordUsernameFormat = (value: string | null | undefined): boolean => {
+  if (isStringEmpty(value)) {
+    return false; // 如果為空，則直接視為不符合格式
+  }
+  // 正規表達式：只允許數字 (0-9)、大寫字母 (A-Z)、小寫字母 (a-z)、底線 (_) 和英文句號 (.)
+  const discordUsernameRegex = /^[a-zA-Z0-9_.]+$/;
+  return discordUsernameRegex.test(value as string);
+};
+
+
 // --- Form State Variables ---
 
 // 暱稱
@@ -51,10 +62,10 @@ const isDiscordUsernameFocused = ref(false);
 const discordUsernameStatus = ref<null | 'success' | 'error'>(null);
 const handleDiscordUsernameBlur = () => {
   isDiscordUsernameFocused.value = false;
-  updateValidationStatus(discordUsername.value, isDiscordUsernameFocused, discordUsernameStatus, (val) => !isStringEmpty(val));
+  updateValidationStatus(discordUsername.value, isDiscordUsernameFocused, discordUsernameStatus, isValidDiscordUsernameFormat);
 };
 watch(discordUsername, (newValue) => {
-  updateValidationStatus(newValue, isDiscordUsernameFocused, discordUsernameStatus, (val) => !isStringEmpty(val));
+  updateValidationStatus(newValue, isDiscordUsernameFocused, discordUsernameStatus, isValidDiscordUsernameFormat);
 });
 
 // 申請遊戲 (下拉選單)
@@ -155,6 +166,7 @@ const showErrorMessage = ref(false); // 保持錯誤訊息在原位顯示
 
 // 新增 Modal 相關狀態
 const showSuccessModal = ref(false);
+const showDiscordTooltipModal = ref(false); // New state for Discord tooltip modal
 
 const validateForm = () => {
   // 觸發所有必填欄位的驗證，確保在提交前更新狀態
@@ -272,6 +284,7 @@ const handleResetForm = () => {
   // 重置表單時隱藏所有提示
   showErrorMessage.value = false;
   showSuccessModal.value = false; // 確保 Modal 也被隱藏
+  showDiscordTooltipModal.value = false; // Also hide the discord tooltip modal
 };
 
 const router = useRouter();
@@ -282,14 +295,14 @@ const closeSuccessModalAndResetForm = () => {
   handleResetForm();
   router.push({ name: 'crazyclown-Home' });
 };
+
+//showSuccessModal.value = true
 </script>
 
 <template>
   <div class="min-h-screen text-gray-900 dark:bg-zinc-900 transition-colors duration-300">
     <form class="max-w-[1024px] container mx-auto p-8" autocomplete="off" @submit="handleSubmit">
-
-      <div class="mt-10"></div>
-
+      <div class="mt-15"></div>
       <div class="mb-8 p-6 bg-white rounded-lg shadow-md dark:bg-zinc-800 dark:shadow-lg">
         <div class="text-center mb-8">
           <h1 class="text-4xl font-extrabold text-gray-800 dark:text-zinc-50 mb-2">🎮 遊戲戰隊/公會申請</h1>
@@ -314,26 +327,18 @@ const closeSuccessModalAndResetForm = () => {
               申請提交後，請務必<a href="https://discord.gg/3TEHPZhYUK"><span class="font-bold text-red-500">立即加入</span></a>我們的
               <a href="https://discord.gg/3TEHPZhYUK" target="_blank" rel="noopener noreferrer"
                 class="text-blue-600 dark:text-blue-400 font-semibold hover:underline transition-colors duration-200 flex-grow-0 inline-flex items-center">
-                「戰隊Discord社群」
-                <svg class="ml-1 h-4 w-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                </svg>
+                「戰隊Discord社群<i class="bi bi-box-arrow-up-right ml-1"></i>」
               </a>。
             </li>
             <li>
-              審核進度請留意戰隊Discord社群中：
+              審核進度/通知皆在
               <a href="https://discord.com/channels/490129931808931840/1389642260936790211" target="_blank"
                 rel="noopener noreferrer"
                 class="text-blue-600 dark:text-blue-400 font-semibold hover:underline transition-colors duration-200 flex-grow-0 inline-flex items-center">
-                <span class="font-mono text-purple-700 dark:text-purple-300">「#⚖️⇜戰隊審核進度」</span> 頻道
-                <svg class="ml-1 h-4 w-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                </svg>
-              </a>。
+                <span class="font-mono text-purple-700 dark:text-purple-300">
+                  「#⚖️⇜戰隊審核進度<i class="bi bi-box-arrow-up-right ml-1"></i>」
+                </span>
+              </a>頻道發布，請多加留意！。
             </li>
           </ul>
         </div>
@@ -356,7 +361,6 @@ const closeSuccessModalAndResetForm = () => {
 
       <div class="mb-8 p-6 bg-white rounded-lg shadow-md dark:bg-zinc-800 dark:shadow-lg">
         <h2 class="text-2xl font-bold text-blue-700 dark:text-blue-400 mb-2">您的基本資料</h2>
-        <p class="text-gray-600 dark:text-zinc-300 mb-6">請填寫您的暱稱與Discord使用者名稱。</p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div class="relative border-2 rounded-md px-3 py-2 transition-all duration-200 ease-in-out" :class="{
@@ -374,7 +378,7 @@ const closeSuccessModalAndResetForm = () => {
                 'text-xs -top-2 bg-white dark:bg-zinc-800 px-1': isNickNameFocused || nickName,
                 'top-1/2 -translate-y-1/2': !isNickNameFocused && !nickName
               }">
-              暱稱 <span class="text-red-500 dark:text-red-400">*</span>
+              姓名/暱稱 <span class="text-red-500 dark:text-red-400">*</span>
             </label>
             <input type="text" id="nickName" v-model="nickName" @focus="isNickNameFocused = true"
               @blur="handleNickNameBlur"
@@ -383,7 +387,7 @@ const closeSuccessModalAndResetForm = () => {
               autocomplete="off" name="暱稱" />
             <p v-if="nickNameStatus === 'error'"
               class="absolute -bottom-5 left-0 text-red-500 dark:text-red-400 text-xs">
-              請輸入暱稱
+              請輸入姓名/暱稱
             </p>
           </div>
 
@@ -411,8 +415,12 @@ const closeSuccessModalAndResetForm = () => {
               autocomplete="off" name="Discord 使用者名稱" />
             <p v-if="discordUsernameStatus === 'error'"
               class="absolute -bottom-5 left-0 text-red-500 dark:text-red-400 text-xs">
-              請輸入 Discord 使用者名稱
+              請輸入有效的 Discord 使用者名稱 (僅限數字、字母、底線_、英文句號.)
             </p>
+            <button type="button" @click="showDiscordTooltipModal = true"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-zinc-400 dark:hover:text-zinc-200 focus:outline-none">
+              <i class="bi bi-exclamation-circle"></i>
+            </button>
           </div>
         </div>
 
@@ -420,7 +428,6 @@ const closeSuccessModalAndResetForm = () => {
 
       <div class="mb-8 p-6 bg-white rounded-lg shadow-md dark:bg-zinc-800 dark:shadow-lg">
         <h2 class="text-2xl font-bold text-blue-700 dark:text-blue-400 mb-2">您的遊戲資料</h2>
-        <p class="text-gray-600 dark:text-zinc-300 mb-6">請提供您的遊戲相關資訊，幫助我們更好地為您分配合適的社群。</p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div class="relative border-2 rounded-md px-3 py-2 transition-all duration-200 ease-in-out" :class="{
@@ -449,12 +456,11 @@ const closeSuccessModalAndResetForm = () => {
               </option>
             </select>
             <p v-if="gameAppliedStatus === 'error'"
-              class="absolute -bottom-5 left-0 text-red-500 dark:text-red-400 text-xs">請選擇申請的遊戲</p>
+              class="absolute -bottom-5 left-0 text-red-500 dark:text-red-400 text-xs">請選擇申請的遊戲
+            </p>
             <div
               class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-zinc-300">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-              </svg>
+              <i class="bi bi-chevron-down"></i>
             </div>
           </div>
 
@@ -541,10 +547,9 @@ const closeSuccessModalAndResetForm = () => {
 
       <div class="mb-8 p-6 bg-white rounded-lg shadow-md dark:bg-zinc-800 dark:shadow-lg">
         <h2 class="text-2xl font-bold text-blue-700 dark:text-blue-400 mb-2">其他相關資訊</h2>
-        <p class="text-gray-600 dark:text-zinc-300 mb-6">如有其他希望讓我們了解的內容，歡迎在此補充。</p>
 
         <div class="grid grid-cols-1 gap-8">
-          <div class="flex items-center mb-4">
+          <div class="flex items-center">
             <input type="checkbox" id="hasFriends" v-model="hasFriends"
               class="mr-3 h-5 w-5 text-blue-600 dark:text-blue-400 border-gray-300 dark:border-zinc-600 rounded focus:ring-blue-500 dark:focus:ring-blue-400"
               name="是否有朋友一同加入">
@@ -595,7 +600,7 @@ const closeSuccessModalAndResetForm = () => {
                 'text-xs -top-2 bg-white dark:bg-zinc-800 px-1': isNotesFocused || notes,
                 'top-3': !isNotesFocused && !notes // 對於 textarea 調整預設 label 位置
               }">
-              備註 (非必填)
+              備註
             </label>
             <textarea id="notes" v-model="notes" @focus="isNotesFocused = true" @blur="handleNotesBlur"
               class="block w-full px-1 pt-6 pb-1 bg-transparent appearance-none h-24 resize-y
@@ -621,46 +626,93 @@ const closeSuccessModalAndResetForm = () => {
 
     </form>
 
-    <div v-if="showSuccessModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div v-if="showSuccessModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4">
       <div
-        class="bg-white dark:bg-zinc-800 rounded-lg shadow-xl p-8 max-w-sm w-full mx-auto relative transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-        <div class="text-center">
-          <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 dark:bg-green-700">
-            <svg class="h-6 w-6 text-green-600 dark:text-green-200" fill="none" stroke="currentColor"
+        class="bg-white dark:bg-zinc-800 rounded-lg shadow-2xl p-8 w-full max-w-lg mx-auto relative transform transition-all duration-300 scale-100 opacity-100 sm:max-w-xl md:max-w-2xl">
+
+        <div class="text-center mb-6">
+          <div
+            class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 dark:bg-green-700 mb-4">
+            <svg class="h-8 w-8 text-green-600 dark:text-green-200" fill="none" stroke="currentColor"
               viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
           </div>
-          <h3 class="mt-4 text-xl leading-6 font-medium text-gray-900 dark:text-zinc-100" id="modal-title">
-            申請已提交，請加入戰隊 Discord 社群！
+          <h3 class="text-2xl leading-8 font-extrabold text-gray-900 dark:text-zinc-100" id="modal-title">
+            恭喜！申請已成功送出！
           </h3>
-          <div class="mt-4">
-            <p class="text-lg text-gray-500 dark:text-zinc-300">
-              您的遊戲戰隊/公會申請書已成功送出，感謝您的填寫。
-            </p>
-            <p class="text-lg text-gray-500 dark:text-zinc-300">
-              為加速審核流程，請立即加入戰隊 Discord 社群**
-            </p>
-            <p class="text-lg text-red-600 dark:text-red-400 font-semibold mt-1">
-              若未加入戰隊 Discord 社群將無法開始審核您的申請。
-            </p>
-          </div>
         </div>
-        <div class="mt-5 sm:mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+
+        <div class="border-l-4 border-blue-500 bg-blue-50 dark:bg-zinc-700 p-4 rounded-md shadow-inner">
+          <div class="flex items-center mb-3"> <svg class="h-6 w-6 text-blue-600 dark:text-blue-400 mr-3 flex-shrink-0"
+              fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9.293 11.293a1 1 0 001.414 1.414L12 10.414V14a1 1 0 102 0v-3.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3z"
+                clip-rule="evenodd" />
+            </svg>
+            <h2 class="text-xl font-bold text-blue-700 dark:text-blue-300">重要指引</h2>
+          </div>
+          <hr class="my-3 border-blue-300 dark:border-zinc-600">
+          <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-zinc-200">
+            <li>
+              請務必<a href="https://discord.gg/3TEHPZhYUK"><span class="font-bold text-red-500">立即加入</span></a>我們的
+              <a href="https://discord.gg/3TEHPZhYUK" target="_blank" rel="noopener noreferrer"
+                class="text-blue-600 dark:text-blue-400 font-semibold hover:underline transition-colors duration-200 flex-grow-0 inline-flex items-center">
+                「戰隊Discord社群<i class="bi bi-box-arrow-up-right ml-1"></i>」
+              </a>。
+            </li>
+            <li>
+              審核進度/通知皆在
+              <a href="https://discord.com/channels/490129931808931840/1389642260936790211" target="_blank"
+                rel="noopener noreferrer"
+                class="text-blue-600 dark:text-blue-400 font-semibold hover:underline transition-colors duration-200 flex-grow-0 inline-flex items-center">
+                <span class="font-mono text-purple-700 dark:text-purple-300">
+                  「#⚖️⇜戰隊審核進度<i class="bi bi-box-arrow-up-right ml-1"></i>」
+                </span>
+              </a>頻道發布，請多加留意！。
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-6 sm:mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
           <button type="button"
-            class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm dark:bg-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-600 dark:border-zinc-600"
+            class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-3 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-lg dark:bg-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-600 dark:border-zinc-600 transition-colors duration-200"
             @click="closeSuccessModalAndResetForm">
             回到首頁
           </button>
           <a href="https://discord.gg/3TEHPZhYUK" target="_blank" rel="noopener noreferrer"
-            class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-purple-600 text-base font-medium text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:text-sm dark:bg-purple-500 dark:hover:bg-purple-600">
-            加入 Discord 社群
-            <svg class="ml-2 -mr-1 h-5 w-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-              <path fill-rule="evenodd"
-                d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.295a.75.75 0 111.04-1.04l5.25 5.25a.75.75 0 010 1.06l-5.25 5.25a.75.75 0 11-1.04-1.04l4.158-4.158H3.75A.75.75 0 013 10z"
+            class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-3 bg-purple-700 text-base font-medium text-white hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:text-lg dark:bg-purple-600 dark:hover:bg-purple-700 transition-colors duration-200">
+            <svg class="mr-2 h-6 w-6" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path
+                d="M6.29 18.29a1 1 0 01-1.41-1.41L15.59 7H12a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V7.41L6.29 18.29z" />
+              <path fill-rule="evenodd" d="M10 3a7 7 0 100 14 7 7 0 000-14zM2 10a8 8 0 1116 0 8 8 0 01-16 0z"
                 clip-rule="evenodd" />
+              <path
+                d="M12.5 7.5a.5.5 0 11-1 0 .5.5 0 011 0zM7.5 7.5a.5.5 0 11-1 0 .5.5 0 011 0zM10 12a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+              <path d="M11 9H9a1 1 0 100 2h2a1 1 0 100-2z" />
             </svg>
+            立即加入 Discord
           </a>
+        </div>
+      </div>
+    </div>
+
+    <div v-if="showDiscordTooltipModal"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4">
+      <div class="bg-white dark:bg-zinc-800 rounded-lg shadow-2xl p-4 w-full max-w-lg mx-auto relative">
+        <button @click="showDiscordTooltipModal = false"
+          class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 dark:text-zinc-400 dark:hover:text-zinc-200 focus:outline-none">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+        <div class="text-center">
+          <h4 class="text-lg font-bold mb-4 text-gray-900 dark:text-zinc-100">Discord 使用者名稱範例</h4>
+          <img src="@/assets/media/crazyclown/Discord使用者明峰範例.png" alt="Discord Username Example"
+            class="max-w-full h-auto mx-auto rounded-md shadow-md">
+          <p class="mt-4 text-sm text-gray-600 dark:text-zinc-300">
+            請輸入紅框處顯示的 Discord 使用者名稱。
+          </p>
         </div>
       </div>
     </div>
