@@ -290,11 +290,54 @@ const closeSuccessModalAndResetForm = () => {
 
       <div class="mt-10"></div>
 
-      <div class="text-center mb-8">
-        <h1 class="text-4xl font-extrabold text-gray-800 dark:text-zinc-50 mb-2">🎮 遊戲戰隊/公會申請</h1>
-        <p class="text-lg text-gray-600 dark:text-zinc-300">
-          歡迎加入我們的大家庭！請詳細填寫以下資料，讓我們更了解您。
-        </p>
+      <div class="mb-8 p-6 bg-white rounded-lg shadow-md dark:bg-zinc-800 dark:shadow-lg">
+        <div class="text-center mb-8">
+          <h1 class="text-4xl font-extrabold text-gray-800 dark:text-zinc-50 mb-2">🎮 遊戲戰隊/公會申請</h1>
+          <p class="text-lg text-gray-600 dark:text-zinc-300">
+            歡迎加入我們的大家庭！請詳細填寫以下資料，讓我們更了解您。
+          </p>
+        </div>
+
+        <div class="border-l-4 border-yellow-500 bg-yellow-50 dark:bg-zinc-700 p-4 mb-6 rounded-md shadow-inner">
+          <div class="flex items-center">
+            <svg class="h-6 w-6 text-yellow-600 dark:text-yellow-400 mr-3 flex-shrink-0" fill="none"
+              stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+              </path>
+            </svg>
+            <h2 class="text-2xl font-bold text-yellow-700 dark:text-yellow-300">重要注意事項</h2>
+          </div>
+          <hr class="my-3 border-yellow-300 dark:border-zinc-600">
+          <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-zinc-200">
+            <li>
+              申請提交後，請務必<a href="https://discord.gg/3TEHPZhYUK"><span class="font-bold text-red-500">立即加入</span></a>我們的
+              <a href="https://discord.gg/3TEHPZhYUK" target="_blank" rel="noopener noreferrer"
+                class="text-blue-600 dark:text-blue-400 font-semibold hover:underline transition-colors duration-200 flex-grow-0 inline-flex items-center">
+                「戰隊Discord社群」
+                <svg class="ml-1 h-4 w-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              </a>。
+            </li>
+            <li>
+              審核進度請留意戰隊Discord社群中：
+              <a href="https://discord.com/channels/490129931808931840/1389642260936790211" target="_blank"
+                rel="noopener noreferrer"
+                class="text-blue-600 dark:text-blue-400 font-semibold hover:underline transition-colors duration-200 flex-grow-0 inline-flex items-center">
+                <span class="font-mono text-purple-700 dark:text-purple-300">「#⚖️⇜戰隊審核進度」</span> 頻道
+                <svg class="ml-1 h-4 w-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              </a>。
+            </li>
+          </ul>
+        </div>
+
       </div>
 
       <div v-if="showErrorMessage" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6"
