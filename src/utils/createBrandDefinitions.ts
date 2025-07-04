@@ -68,6 +68,7 @@ export function createBrandDefinitions(
           meta: {
             brand: brandName,
             layout: config.layout || 'public',
+            title: config.title || '',
           },
         }
         if (config.children && config.children.length > 0) {

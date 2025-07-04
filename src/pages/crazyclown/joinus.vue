@@ -341,6 +341,17 @@ const closeSuccessModalAndResetForm = () => {
               </a>頻道發布，請多加留意！。
             </li>
           </ul>
+          <hr class="my-3 border-yellow-300 dark:border-zinc-600">
+          <p class="text-gray-700 dark:text-zinc-200">
+            如頻繁提交失敗，可前直接前往
+            <a href="https://discord.gg/3TEHPZhYUK" target="_blank" rel="noopener noreferrer"
+                class="text-blue-600 dark:text-blue-400 font-semibold hover:underline transition-colors duration-200 flex-grow-0 inline-flex items-center">
+                「戰隊Discord社群<i class="bi bi-box-arrow-up-right ml-1"></i>」
+            </a>的<a href="https://discord.com/channels/490129931808931840/1182389838582915162" target="_blank" rel="noopener noreferrer"
+                class="text-blue-600 dark:text-blue-400 font-semibold hover:underline transition-colors duration-200 flex-grow-0 inline-flex items-center">
+                「📭⇜客服服務台<i class="bi bi-box-arrow-up-right ml-1"></i>」
+            </a>申請。
+          </p>
         </div>
 
       </div>
