@@ -350,7 +350,7 @@ const closeSuccessModalAndResetForm = () => {
             </a>的<a href="https://discord.com/channels/490129931808931840/1182389838582915162" target="_blank" rel="noopener noreferrer"
                 class="text-blue-600 dark:text-blue-400 font-semibold hover:underline transition-colors duration-200 flex-grow-0 inline-flex items-center">
                 「📭⇜客服服務台<i class="bi bi-box-arrow-up-right ml-1"></i>」
-            </a>申請。
+            </a>頻道申請。
           </p>
         </div>
 
