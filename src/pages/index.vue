@@ -8,11 +8,56 @@ import DecorSection from '@/components/DecorSection.vue'
 import { useCurrentBrand } from '@/composables/useCurrentBrand'
 
 const { brandInfo } = useCurrentBrand()
+
+type Partner = {
+  name: string,
+  url: string,
+  logo: string,
+}
+
+const partners = [
+  {
+    name: 'Crazy Clown',
+    url: 'https://chuan.life/crazyclown',
+    logo: 'https://i.meee.com.tw/HSXSnK9.png',
+  },
+  {
+    name: '源品香企業行',
+    url: 'https://yuanpinxiang.com',
+    logo: 'https://i.meee.com.tw/17D0l36.png',
+  },
+] as Partner[]
+
 </script>
 
 <template>
   <div class="min-h-screen">
 
+    <section id="home-partners">
+      <div class="container mx-auto p-8">
+
+        <section class="my-16">
+          <h2 class="text-3xl font-semibold text-center mb-10 text-gray-800">我們的合作夥伴</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <a v-for="partner in partners" :key="partner.name" :href="partner.url" target="_blank"
+              rel="noopener noreferrer"
+              class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:scale-105">
+              <img :src="partner.logo" :alt="`${partner.name} Logo`"
+                class="h-40 w-auto mb-4 object-contain rounded-xl" />
+              <p class="text-lg font-medium text-gray-700 text-center">{{ partner.name }}</p>
+            </a>
+          </div>
+
+          <div v-if="partners.length === 0" class="text-center text-gray-500 mt-8">
+            目前沒有合作夥伴資訊。
+          </div>
+        </section>
+
+        <p class="text-center text-gray-600 mt-16">
+          探索我們的服務，讓生活更美好。
+        </p>
+      </div>
+    </section>
 
     <!-- About Section -->
     <section id="about" class="py-20 bg-white dark:bg-gray-900">
