@@ -48,8 +48,6 @@ export function setupFavicon(router: Router) {
     appleTouchIcon.rel = 'apple-touch-icon'
     appleTouchIcon.href = faviconUrl
     document.head.appendChild(appleTouchIcon)
-
-    console.log(`Favicon updated for brand: ${brandKey}, theme: ${isDark.value ? 'dark' : 'light'}`)
   }
 
   // 路由切換時更新 favicon

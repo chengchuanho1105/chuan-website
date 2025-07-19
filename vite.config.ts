@@ -16,9 +16,9 @@ export default defineConfig({
     vueDevTools(),
     Pages({
       dirs: [
-        { dir: 'src/pages/yuanpinxiang', baseRoute: 'yuanpinxiang' },
-        { dir: 'src/pages/chuanlife', baseRoute: '' },
+        { dir: 'src/pages', baseRoute: '' },
         { dir: 'src/pages/crazyclown', baseRoute: 'crazyclown' },
+        { dir: 'src/pages/yuanpinxiang', baseRoute: 'yuanpinxiang' },
       ],
       extensions: ['vue'],
       // 這裡整合 sitemap 產生
