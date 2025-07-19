@@ -48,20 +48,15 @@ const isHomePage = computed(() => {
                   <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4 sm:mt-6">
                     <router-link
                       class="inline-block rounded-lg border border-blue-200 px-5 py-3 font-medium text-center text-blue-700 dark:text-blue-300 shadow-sm transition-colors hover:bg-blue-50 hover:text-blue-900"
-                      to="/crazyclown/join" data-aos="fade-up">
+                      :to="{ name: 'crazyclown-join' }" data-aos="fade-up">
                       入隊申請
                     </router-link>
 
                     <router-link
                       class="inline-block rounded-lg border border-yellow-200 px-5 py-3 font-medium text-center text-yellow-700 dark:text-yellow-300 shadow-sm transition-colors hover:bg-yellow-50 hover:text-yellow-900"
-                      to="/crazyclown/store" data-aos="fade-up">
+                      :to="{ name: 'crazyclown-store' }" data-aos="fade-up">
                       特惠商店
                     </router-link>
-
-                    <a class="inline-block rounded-lg border border-green-200 px-5 py-3 font-medium text-center text-green-700 dark:text-green-300 shadow-sm transition-colors hover:bg-green-50 hover:text-green-900"
-                      @click.prevent="scrollTo('#home-event')" href="" data-aos="fade-up">
-                      最新活動
-                    </a>
 
                     <a class="inline-block rounded-lg border border-indigo-200 px-5 py-3 font-medium text-center text-indigo-700 dark:text-indigo-300 shadow-sm transition-colors hover:bg-indigo-50 hover:text-indigo-900"
                       href=" https://discord.gg/3TEHPZhYUK" data-aos="fade-up">

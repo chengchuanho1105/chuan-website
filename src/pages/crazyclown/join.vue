@@ -298,10 +298,8 @@ const router = useRouter();
 const closeSuccessModalAndResetForm = () => {
   showSuccessModal.value = false;
   handleResetForm();
-  router.push({ name: 'crazyclown-Home' });
+  router.push({ name: 'crazyclown' });
 };
-
-//showSuccessModal.value = true
 </script>
 
 <template>
