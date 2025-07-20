@@ -51,15 +51,22 @@ const {
   mapProductListData
 )
 
-const usd2twd = ref(30.9)
-const FEE = 1.03
+const usd2twd = ref(30)
+const FEE = ref(1.03)
 const USD2TWD_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRBdBIEkQ5g_U0tXrNAdLXwaViW_NhBPy3EwPhiiJ3oX8vinj-K69yBeVHtJmbVFXPBqY7i09Os5GTE/pub?gid=1049789859&single=true&output=csv'
 async function fetchUsd2Twd() {
   try {
-    const res = await fetch(USD2TWD_CSV_URL)
-    const text = await res.text()
-    const rate = parseFloat(text)
-    if (!isNaN(rate) && rate > 0) usd2twd.value = rate
+    const response = await fetch(USD2TWD_CSV_URL)
+    const csvText = await response.text()
+    const lines = csvText.trim().split('\n')
+
+    if (lines.length > 0) {
+      const data = lines[1].split(',')
+      if (data.length >= 2) {
+        usd2twd.value = parseFloat(data[0])
+        FEE.value = parseFloat(data[1])
+      }
+    }
   } catch {
     // 保留預設值
   }
@@ -70,7 +77,7 @@ onMounted(() => {
   fetchUsd2Twd()
 })
 
-const GCOIN2TWD = computed(() => usd2twd.value / 100 * FEE) // 1 G-Coin = 1/100 USD * 匯率 * 手續費
+const GCOIN2TWD = computed(() => usd2twd.value / 100 * FEE.value) // 1 G-Coin = 1/100 USD * 匯率 * 手續費
 
 // 以 category 為分頁
 const tabs = computed(() => {
