@@ -2,8 +2,8 @@
 defineOptions({ name: 'Layout-ChuanLife-Default' })
 
 // ---------- Vue 核心工具函式 ----------
-import { computed } from 'vue'
-import { RouterView, useRoute } from 'vue-router'
+import { RouterView } from 'vue-router'
+import { useIsHomePage } from '@/composables/useIsHomePage'
 
 import Navbar from '@/components/layouts/navbar/Navbar.vue'
 import Banner from '@/components/layouts/Banner.vue'
@@ -11,11 +11,7 @@ import Breadcrumb from '@/components/layouts/Breadcrumb.vue'
 import Footer from '@/components/layouts/Footer.vue'
 
 // 判斷是否為首頁
-const route = useRoute() // 取得當前路由
-const isHomePage = computed(() => {
-  return route.path === '/chuanlife' || route.path === '/chuanlife/'
-})
-
+const { isHomePage } = useIsHomePage()
 </script>
 
 <template>
@@ -48,14 +44,8 @@ const isHomePage = computed(() => {
                   <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4 sm:mt-6">
                     <router-link
                       class="inline-block rounded-lg border border-blue-200 px-5 py-3 font-medium text-center text-blue-700 dark:text-blue-300 shadow-sm transition-colors hover:bg-blue-50 hover:text-blue-900"
-                      to="/chuanlife/about" data-aos="fade-up">
+                      :to="{ name: 'about' }" data-aos="fade-up">
                       了解更多
-                    </router-link>
-
-                    <router-link
-                      class="inline-block rounded-lg border border-yellow-200 px-5 py-3 font-medium text-center text-yellow-700 dark:text-yellow-300 shadow-sm transition-colors hover:bg-yellow-50 hover:text-yellow-900"
-                      to="/crazyclown/store" data-aos="fade-up">
-                      特惠商店
                     </router-link>
                   </div>
                 </div>

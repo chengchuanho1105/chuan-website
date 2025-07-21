@@ -15,11 +15,7 @@ export default defineConfig({
     vueJsx(),
     vueDevTools(),
     Pages({
-      dirs: [
-        { dir: 'src/pages', baseRoute: '' },
-        { dir: 'src/pages/crazyclown', baseRoute: 'crazyclown' },
-        { dir: 'src/pages/yuanpinxiang', baseRoute: 'yuanpinxiang' },
-      ],
+      dirs: [{ dir: 'src/pages', baseRoute: '' }],
       extensions: ['vue'],
       // 這裡整合 sitemap 產生
       onRoutesGenerated: (routes) => {
