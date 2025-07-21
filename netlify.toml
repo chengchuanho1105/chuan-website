@@ -1,0 +1,16 @@
+# Netlify Build & Deploy Settings
+[build]
+  command = "npm run build" # 或者你目前使用的 "npm run build-only"
+  publish = "dist"
+
+# Netlify Redirect Rules
+[[redirects]]
+  from = "/crazyclown/*"
+  to = "https://crazyclown.online/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200 
