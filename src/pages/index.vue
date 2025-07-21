@@ -18,7 +18,7 @@ type Partner = {
 const partners = [
   {
     name: 'Crazy Clown',
-    url: 'https://chuan.life/crazyclown',
+    url: 'https://crazyclown.online',
     logo: 'https://i.meee.com.tw/HSXSnK9.png',
   },
   {
