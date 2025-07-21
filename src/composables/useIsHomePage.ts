@@ -10,7 +10,7 @@ export function useIsHomePage() {
   watch(
     [() => route.path, homepageUrl],
     ([newPath, newHomepageUrl]) => {
-      isHomePage.value = newPath === newHomepageUrl
+      isHomePage.value = newPath === newHomepageUrl || newPath === newHomepageUrl + '/'
     },
     { immediate: true },
   )

@@ -7,6 +7,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 import Pages from 'vite-plugin-pages'
 import tailwindcss from '@tailwindcss/vite'
 import generateSitemap from 'vite-plugin-pages-sitemap'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -26,6 +27,14 @@ export default defineConfig({
       },
     }),
     tailwindcss(),
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'public/_redirects',
+          dest: '',
+        },
+      ],
+    }),
   ],
   resolve: {
     alias: {
