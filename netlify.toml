@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/crazyclown"
+  to = "https://crazyclown.store"
+  status = 301
+  force = true
