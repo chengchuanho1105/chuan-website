@@ -135,5 +135,85 @@ export const pageConfig: PageConfig = {
         },
       },
     },
+    {
+      path: '/privacy',
+      name: `${brandName}-Privacy`,
+      component: () => import(`@/pages/privacy.vue`),
+      meta: {
+        title: `隱私權條款 | ${brandDisplayName}`,
+        description: 'Chuan Life 隱私權條款，詳細說明我們如何收集、使用和保護您的個人資訊。',
+        layout: 'default',
+        requiresAuth: false,
+        roles: ['admin', 'user', 'guest'],
+        seo: {
+          sitemap: true,
+          sitemapXml: true,
+          robots: true,
+        },
+        ui: {
+          navbar: false,
+        },
+      },
+    },
+    {
+      path: '/consumer-rights',
+      name: `${brandName}-ConsumerRights`,
+      component: () => import(`@/pages/consumer-rights.vue`),
+      meta: {
+        title: `消費者權益 | ${brandDisplayName}`,
+        description: 'Chuan Life 消費者權益保護，保障您的消費權益，提供透明、安全的購物環境。',
+        layout: 'default',
+        requiresAuth: false,
+        roles: ['admin', 'user', 'guest'],
+        seo: {
+          sitemap: true,
+          sitemapXml: true,
+          robots: true,
+        },
+        ui: {
+          navbar: false,
+        },
+      },
+    },
+    {
+      path: '/membership-terms',
+      name: `${brandName}-MembershipTerms`,
+      component: () => import(`@/pages/membership-terms.vue`),
+      meta: {
+        title: `會員服務條款 | ${brandDisplayName}`,
+        description: 'Chuan Life 會員服務條款，詳細說明會員權益、義務和相關規定。',
+        layout: 'default',
+        requiresAuth: false,
+        roles: ['admin', 'user', 'guest'],
+        seo: {
+          sitemap: true,
+          sitemapXml: true,
+          robots: true,
+        },
+        ui: {
+          navbar: false,
+        },
+      },
+    },
+    {
+      path: '/return-policy',
+      name: `${brandName}-ReturnPolicy`,
+      component: () => import(`@/pages/return-policy.vue`),
+      meta: {
+        title: `退換貨方式流程 | ${brandDisplayName}`,
+        description: 'Chuan Life 退換貨方式流程，詳細說明退換貨政策、流程和注意事項。',
+        layout: 'default',
+        requiresAuth: false,
+        roles: ['admin', 'user', 'guest'],
+        seo: {
+          sitemap: true,
+          sitemapXml: true,
+          robots: true,
+        },
+        ui: {
+          navbar: false,
+        },
+      },
+    },
   ],
 }

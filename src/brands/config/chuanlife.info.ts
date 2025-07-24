@@ -19,7 +19,7 @@ export const brandInfoConfig: BrandInfoConfig = {
   websiteUrl: 'https://chuan.life', // 品牌網站
   copyright: 'Chuan Life', // 版權方
   copyrightUrl: 'https://chuan.life', // 版權方Url
-  contactEmail: 'contact@chuan.life', // 聯絡信箱
+  contactEmail: 'chengchuanho110@gmail.com', // 聯絡信箱
   paymentMethods: ['bank-transfer', 'cash'], // 付款方式
   language: 'zh-TW', // 語言
   currency: 'TWD', // 貨幣

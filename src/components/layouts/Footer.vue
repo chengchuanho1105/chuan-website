@@ -60,6 +60,38 @@ const logoUrl = computed(() => {
             </a>
           </li>
         </ul>
+
+        <!-- 法律條款 -->
+        <h4 class="text-md font-semibold text-gray-800 dark:text-gray-200 mt-4 mb-2 flex items-center gap-2">
+          <i class="bi bi-shield-check text-sky-500 dark:text-sky-300"></i> 法律條款
+        </h4>
+        <ul
+          class="divide-y divide-gray-200 dark:divide-gray-800 rounded-xl overflow-hidden bg-white/70 dark:bg-gray-900/70 shadow-md">
+          <li>
+            <a href="/privacy"
+              class="block px-5 py-3 text-gray-700 dark:text-gray-200 hover:bg-sky-100 dark:hover:bg-sky-800 hover:pl-7 transition-all duration-200 font-medium">
+              隱私權條款
+            </a>
+          </li>
+          <li>
+            <a href="/consumer-rights"
+              class="block px-5 py-3 text-gray-700 dark:text-gray-200 hover:bg-sky-100 dark:hover:bg-sky-800 hover:pl-7 transition-all duration-200 font-medium">
+              消費者權益
+            </a>
+          </li>
+          <li>
+            <a href="/membership-terms"
+              class="block px-5 py-3 text-gray-700 dark:text-gray-200 hover:bg-sky-100 dark:hover:bg-sky-800 hover:pl-7 transition-all duration-200 font-medium">
+              會員服務條款
+            </a>
+          </li>
+          <li>
+            <a href="/return-policy"
+              class="block px-5 py-3 text-gray-700 dark:text-gray-200 hover:bg-sky-100 dark:hover:bg-sky-800 hover:pl-7 transition-all duration-200 font-medium">
+              退換貨方式流程
+            </a>
+          </li>
+        </ul>
       </div>
 
       <!-- 社群資訊 -->
